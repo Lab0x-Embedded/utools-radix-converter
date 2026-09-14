@@ -1,14 +1,55 @@
+/*
+ * shadcn/ui 默认主题（neutral）——变量为 HSL 通道值，使用方式：hsl(var(--x))
+ * 与 doocs/md 等仓库保持一致，深浅色由 prefers-color-scheme 切换。
+ */
 :root {
-  --blue: rgb(88, 164, 246);
-  --light: #fff;
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
 
-  /* 进制转换插件配色 */
-  --rdx-fg: #1f2328;
-  --rdx-muted: #8a8f98;
-  --rdx-border: #d9d9d9;
-  --rdx-accent: #409eff;
-  --rdx-surface: #ffffff;
-  --rdx-surface-alt: #f7f8fa;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.9%;
+
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+
+  --radius: 0.5rem;
+
+  /* 组件语义别名（组件里只使用下面这些） */
+  --rdx-radius: calc(var(--radius) - 2px);
+  --rdx-fg: hsl(var(--foreground));
+  --rdx-muted: hsl(var(--muted-foreground));
+  --rdx-border: hsl(var(--border));
+  --rdx-input: hsl(var(--input));
+  --rdx-ring: hsl(var(--ring));
+  --rdx-primary: hsl(var(--primary));
+  --rdx-primary-fg: hsl(var(--primary-foreground));
+  --rdx-surface: hsl(var(--card));
+  --rdx-surface-alt: hsl(var(--secondary));
+  --rdx-accent-bg: hsl(var(--accent));
+  --rdx-accent-bg-fg: hsl(var(--accent-foreground));
+  --rdx-error: hsl(var(--destructive));
+
+  /* 下拉箭头（lucide chevron-down，单色描边，深浅色下均可见） */
+  --rdx-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 
 html,
@@ -17,22 +58,27 @@ body {
   padding: 0;
 }
 
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
 button {
   border: none;
-  background: none var(--blue);
-  color: var(--light);
-  line-height: 2.5;
+  font: inherit;
   cursor: pointer;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 button:disabled {
-  filter: grayscale(1);
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
 button:not(:disabled):active {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 textarea {
@@ -40,40 +86,43 @@ textarea {
   margin: 0;
 }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #f4f4f4;
-  }
+::-webkit-scrollbar-track-piece {
+  background-color: hsl(var(--background));
+}
 
-  ::-webkit-scrollbar-track-piece {
-    background-color: #f4f4f4;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-color: #f4f4f4;
-  }
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--border));
+  border-color: hsl(var(--background));
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --rdx-fg: #e8e8e8;
-    --rdx-muted: #9aa0a6;
-    --rdx-border: #4a4a4a;
-    --rdx-surface: #3a3a3c;
-    --rdx-surface-alt: #353538;
-  }
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-  &::-webkit-scrollbar-track-piece {
-    background-color: #303133;
-  }
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #666;
-    border-color: #303133;
-  }
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-  body {
-    background-color: #303133;
-    color: #fff;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
   }
 }

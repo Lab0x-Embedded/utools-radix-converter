@@ -153,26 +153,40 @@ onUnmounted(() => clearTimeout(toastTimer))
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 14px;
   color: var(--rdx-fg);
-  background: var(--rdx-surface);
-  border: 1px solid var(--rdx-border);
-  border-radius: 6px;
+  background-color: transparent;
+  border: 1px solid var(--rdx-input);
+  border-radius: var(--rdx-radius);
   outline: none;
 }
 
 .input:focus {
-  border-color: var(--rdx-accent);
+  border-color: var(--rdx-ring);
+  box-shadow: 0 0 0 1px var(--rdx-ring);
 }
 
+/* 去掉系统箭头，改用自绘 chevron：距右边缘 8px，右侧预留 28px 内边距 */
 .select {
   flex: none;
+  min-width: 104px;
   height: 36px;
-  padding: 0 6px;
+  padding: 0 28px 0 10px;
+  appearance: none;
+  -webkit-appearance: none;
   font-size: 13px;
   color: var(--rdx-fg);
-  background: var(--rdx-surface);
-  border: 1px solid var(--rdx-border);
-  border-radius: 6px;
+  background-color: transparent;
+  background-image: var(--rdx-chevron);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 14px 14px;
+  border: 1px solid var(--rdx-input);
+  border-radius: var(--rdx-radius);
   outline: none;
+}
+
+.select:focus {
+  border-color: var(--rdx-ring);
+  box-shadow: 0 0 0 1px var(--rdx-ring);
 }
 
 .convert__hint {
@@ -194,16 +208,16 @@ onUnmounted(() => clearTimeout(toastTimer))
   flex: none;
   display: inline-block;
   padding: 2px 10px;
-  border-radius: 10px;
-  background: var(--rdx-accent);
-  color: #fff;
+  border-radius: var(--rdx-radius);
+  background: var(--rdx-primary);
+  color: var(--rdx-primary-fg);
   font-size: 12px;
 }
 
 .convert__error {
   margin: 10px 0;
   font-size: 13px;
-  color: #e5534b;
+  color: var(--rdx-error);
 }
 
 .convert__empty {
@@ -225,10 +239,11 @@ onUnmounted(() => clearTimeout(toastTimer))
   transform: translateX(-50%);
   max-width: 90%;
   padding: 6px 14px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.78);
-  color: #fff;
+  border-radius: var(--rdx-radius);
+  background: var(--rdx-primary);
+  color: var(--rdx-primary-fg);
   font-size: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
   pointer-events: none;
 }
 

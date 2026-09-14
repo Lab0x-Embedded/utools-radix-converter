@@ -34,22 +34,28 @@ const emit = defineEmits(['copy', 'paste'])
   gap: 10px;
   padding: 8px 12px;
   border: 1px solid var(--rdx-border);
-  border-radius: 6px;
+  border-radius: var(--rdx-radius);
   cursor: pointer;
   transition: border-color 0.15s, background-color 0.15s;
 }
 
 .row:hover {
-  border-color: var(--rdx-accent);
+  background: var(--rdx-accent-bg);
 }
 
+/* 源进制行：shadcn accent 底色 */
+.row--source {
+  background: var(--rdx-accent-bg);
+}
+
+/* 键盘高亮行：shadcn ring-1 */
 .row--active {
-  border-color: var(--rdx-accent);
-  background: var(--rdx-surface-alt);
+  border-color: var(--rdx-ring);
+  box-shadow: 0 0 0 1px var(--rdx-ring);
 }
 
 .row--source .row__label {
-  color: var(--rdx-accent);
+  color: var(--rdx-accent-bg-fg);
 }
 
 .row__label {
@@ -81,20 +87,21 @@ const emit = defineEmits(['copy', 'paste'])
   gap: 6px;
 }
 
+/* shadcn Button：default 变体 */
 .btn {
-  border: none;
-  border-radius: 6px;
+  border-radius: var(--rdx-radius);
   padding: 2px 10px;
   font-size: 12px;
   line-height: 1.8;
-  color: #fff;
-  background: var(--rdx-accent);
+  color: var(--rdx-primary-fg);
+  background: var(--rdx-primary);
   cursor: pointer;
 }
 
+/* shadcn Button：outline 变体 */
 .btn--ghost {
   color: var(--rdx-fg);
-  background: var(--rdx-surface-alt);
-  border: 1px solid var(--rdx-border);
+  background: var(--rdx-surface);
+  border: 1px solid var(--rdx-input);
 }
 </style>

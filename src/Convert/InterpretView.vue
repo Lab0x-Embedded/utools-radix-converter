@@ -86,20 +86,20 @@ const order = computed(() => byteOrder(props.value, width.value))
 }
 
 .chip {
-  border: 1px solid var(--rdx-border);
-  border-radius: 10px;
+  border: 1px solid var(--rdx-input);
+  border-radius: var(--rdx-radius);
   padding: 2px 8px;
   font-size: 12px;
   line-height: 1.8;
-  background: transparent;
+  background: var(--rdx-surface);
   color: var(--rdx-muted);
   cursor: pointer;
 }
 
 .chip--on {
-  border-color: var(--rdx-accent);
-  background: var(--rdx-accent);
-  color: #fff;
+  border-color: var(--rdx-primary);
+  background: var(--rdx-primary);
+  color: var(--rdx-primary-fg);
 }
 
 .line {
@@ -126,12 +126,12 @@ const order = computed(() => byteOrder(props.value, width.value))
 
 .mini {
   flex: none;
-  border: 1px solid var(--rdx-border);
-  border-radius: 6px;
+  border: 1px solid var(--rdx-input);
+  border-radius: var(--rdx-radius);
   padding: 1px 8px;
   font-size: 12px;
   line-height: 1.8;
-  background: var(--rdx-surface-alt);
+  background: var(--rdx-surface);
   color: var(--rdx-fg);
   cursor: pointer;
 }
