@@ -10,7 +10,7 @@ const props = defineProps({
 
 const input = ref('')
 const forcedRadix = ref(0) // 0 = 自动识别
-const activeIndex = ref(1) // 默认高亮 DEC
+const activeIndex = ref(0) // 默认高亮「输入所属的进制行」，见 syncActiveRow
 const toast = ref('')
 const rootRef = ref(null)
 
@@ -30,10 +30,13 @@ watch(
   { immediate: true, deep: true }
 )
 
-/** 输入变化后高亮行回到 DEC */
-watch(input, () => {
-  activeIndex.value = 1
-})
+/** 输入变化后，高亮回到当前输入所属的进制行（如输入 0xffff → 高亮 HEX） */
+function syncActiveRow() {
+  const r = result.value
+  if (!r.ok) return
+  const index = r.rows.findIndex((row) => row.isSource)
+  if (index >= 0) activeIndex.value = index
+}
 
 /** 让 uTools 主窗口高度跟随内容（不用 ResizeObserver：显式同步更可预测） */
 async function syncHeight() {
@@ -76,7 +79,10 @@ function onKeydown(event) {
   }
 }
 
-watch(result, syncHeight)
+watch(result, () => {
+  syncActiveRow()
+  syncHeight()
+})
 watch(toast, syncHeight)
 
 onMounted(syncHeight)

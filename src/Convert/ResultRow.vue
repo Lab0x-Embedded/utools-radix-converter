@@ -43,9 +43,10 @@ const emit = defineEmits(['copy', 'paste'])
   background: var(--rdx-accent-bg);
 }
 
-/* 源进制行：shadcn accent 底色 */
+/* 源进制行：左侧竖条标记「这是你输入的那一行」 */
 .row--source {
-  background: var(--rdx-accent-bg);
+  border-left: 2px solid var(--rdx-primary);
+  padding-left: 10px;
 }
 
 /* 键盘高亮行：shadcn ring-1 */
@@ -55,7 +56,7 @@ const emit = defineEmits(['copy', 'paste'])
 }
 
 .row--source .row__label {
-  color: var(--rdx-accent-bg-fg);
+  color: var(--rdx-fg);
 }
 
 .row__label {
