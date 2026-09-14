@@ -1,44 +1,57 @@
 {
   "main": "index.html",
-  "preload": "preload/services.js",
   "logo": "logo.png",
-  "development": {
-    "main": "http://localhost:5173"
+  "pluginSetting": {
+    "single": true,
+    "height": 420
   },
   "features": [
     {
-      "code": "hello",
-      "explain": "这是插件应用的第一个功能",
+      "code": "convert",
+      "explain": "进制转换（2/8/10/16 互转、位宽、字节序）",
       "cmds": [
-        "你好",
-        "hello"
+        "进制转换",
+        "进制",
+        "radix",
+        "base"
       ]
     },
     {
-      "code": "read",
-      "explain": "功能指令+匹配指令示例，使用 node.js 能力读文件",
+      "code": "hex",
+      "explain": "十六进制 → 十进制/二进制/八进制",
       "cmds": [
-        "读文件",
         {
-          "type": "files",
-          "fileType": "file",
-          "maxLength": 1,
-          "label": "读文件"
+          "type": "regex",
+          "label": "十六进制转换",
+          "match": "/^0[xX][0-9a-fA-F][0-9a-fA-F_\\s]*$/",
+          "minLength": 3,
+          "maxLength": 200
         }
       ]
     },
     {
-      "code": "write",
-      "explain": "匹配指令示例，使用 node.js 能力写文件",
-      "mainHide": true,
+      "code": "bin",
+      "explain": "二进制 → 十进制/十六进制/八进制",
       "cmds": [
         {
-          "type": "over",
-          "label": "保存为文件"
-        },
+          "type": "regex",
+          "label": "二进制转换",
+          "match": "/^0[bB][01][01_\\s]*$/",
+          "minLength": 3,
+          "maxLength": 200
+        }
+      ]
+    },
+    {
+      "code": "oct",
+      "explain": "八进制 → 十进制/十六进制/二进制",
+      "cmds": [
         {
-          "type": "img",
-          "label": "保存为文件"
+          "type": "regex",
+          "label": "八进制转换",
+          "match": "/^0[oO][0-7][0-7_\\s]*$/",
+          "minLength": 3,
+          "maxLength": 200
         }
       ]
     }

@@ -1,6 +1,14 @@
 :root {
   --blue: rgb(88, 164, 246);
   --light: #fff;
+
+  /* 进制转换插件配色 */
+  --rdx-fg: #1f2328;
+  --rdx-muted: #8a8f98;
+  --rdx-border: #d9d9d9;
+  --rdx-accent: #409eff;
+  --rdx-surface: #ffffff;
+  --rdx-surface-alt: #f7f8fa;
 }
 
 html,
@@ -47,6 +55,14 @@ textarea {
 }
 
 @media (prefers-color-scheme: dark) {
+  :root {
+    --rdx-fg: #e8e8e8;
+    --rdx-muted: #9aa0a6;
+    --rdx-border: #4a4a4a;
+    --rdx-surface: #3a3a3c;
+    --rdx-surface-alt: #353538;
+  }
+
   &::-webkit-scrollbar-track-piece {
     background-color: #303133;
   }
