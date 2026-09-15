@@ -2,6 +2,7 @@
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { convertAll } from '../utils/radix.js'
 import InterpretView from './InterpretView.vue'
+import CapacityView from './CapacityView.vue'
 import ResultRow from './ResultRow.vue'
 
 const props = defineProps({
@@ -131,6 +132,8 @@ onUnmounted(() => clearTimeout(toastTimer))
     </div>
 
     <InterpretView v-if="result.ok" :value="result.value" @copy="handleCopy" />
+
+    <CapacityView v-if="result.ok && result.value >= 0n" :value="result.value" @copy="handleCopy" />
 
     <transition name="fade">
       <div v-if="toast" class="toast">{{ toast }}</div>
