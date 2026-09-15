@@ -20,12 +20,11 @@
 
 **新增**
 
-- 容量单位换算：输入数字自动换算容量单位，含二进制 IEC（B / KiB / MiB / GiB / TiB）与公制（Kb / Mb / Gb / Tb）
+- 容量换算：把当前数值换算成容量单位（二进制 1024 进制：B / KiB / MiB / GiB / TiB），同时显示原始字节数，均可一键复制
   - `1024` → `1 KiB`
-  - `5 MiB` → `5 242 880 bytes`
-  - `1.5 GiB` → `1 610 612 736 bytes`
-- 换算结果显示原始字节数与最适单位，均可一键复制
-- 转换核心新增纯函数 `src/utils/capacity.js`（`parseCapacity` / `formatCapacity`），单元测试增至 51 条
+  - `0x100000` → `1 MiB`
+- 新增纯函数模块 `src/utils/capacity.js`：`formatCapacity` 已接入界面，`parseCapacity`（带单位输入解析）尚未接入，目前仅由单元测试覆盖
+- 单元测试增至 51 条
 
 ## v0.1.3 — 2026-09-14
 
