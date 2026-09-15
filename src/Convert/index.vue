@@ -131,9 +131,9 @@ onUnmounted(() => clearTimeout(toastTimer))
       />
     </div>
 
-    <InterpretView v-if="result.ok" :value="result.value" @copy="handleCopy" />
-
     <CapacityView v-if="result.ok && result.value >= 0n" :value="result.value" @copy="handleCopy" />
+
+    <InterpretView v-if="result.ok" :value="result.value" @copy="handleCopy" />
 
     <transition name="fade">
       <div v-if="toast" class="toast">{{ toast }}</div>

@@ -6,12 +6,12 @@ const props = defineProps({
   value: { type: null, required: true }, // bigint
 })
 
+const emit = defineEmits(['copy'])
+
 const display = computed(() => {
   if (props.value == null || props.value < 0n) return ''
   return formatCapacity(props.value)
 })
-
-const emit = defineEmits(['copy'])
 </script>
 
 <template>
@@ -21,86 +21,68 @@ const emit = defineEmits(['copy'])
     </header>
 
     <div class="line">
-      <span class="line__k">Bytes</span>
-      <span class="line__v">{{ String(props.value) }}</span>
-      <button class="mini" @click="emit('copy', String(props.value), 'Bytes')">复制</button>
-    </div>
-
-    <div class="line">
       <span class="line__k">容量</span>
       <span class="line__v">{{ display }}</span>
       <button class="mini" @click="emit('copy', display, '容量')">复制</button>
+    </div>
+    <div class="line">
+      <span class="line__k">字节数</span>
+      <span class="line__v">{{ String(props.value) }}</span>
+      <button class="mini" @click="emit('copy', String(props.value), '字节数')">复制</button>
     </div>
   </section>
 </template>
 
 <style scoped>
 .capacity {
-  margin-top: 12px;
-  border: 1px solid var(--rdx-border);
-  border-radius: var(--rdx-radius);
-  overflow: hidden;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--rdx-border);
 }
 
 .capacity__head {
-  padding: 6px 12px;
-  background: var(--rdx-muted);
-  border-bottom: 1px solid var(--rdx-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 
 .capacity__title {
   font-size: 12px;
-  font-weight: 500;
-  color: var(--rdx-muted-fg);
+  color: var(--rdx-muted);
 }
 
 .line {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-bottom: 1px solid var(--rdx-border);
+  gap: 10px;
+  min-height: 24px;
   font-size: 13px;
 }
 
-.line:last-child {
-  border-bottom: none;
-}
-
 .line__k {
+  width: 64px;
   flex: none;
-  width: 60px;
-  color: var(--rdx-muted);
   font-size: 12px;
+  color: var(--rdx-muted);
 }
 
 .line__v {
   flex: 1;
-  min-width: 0;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  color: var(--rdx-fg);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-all;
   user-select: text;
-  -webkit-user-select: text;
 }
 
 .mini {
   flex: none;
-  padding: 2px 8px;
-  font-size: 11px;
-  border: 1px solid var(--rdx-border);
-  border-radius: 4px;
-  background: transparent;
-  color: var(--rdx-muted);
+  border: 1px solid var(--rdx-input);
+  border-radius: var(--rdx-radius);
+  padding: 1px 8px;
+  font-size: 12px;
+  line-height: 1.8;
+  background: var(--rdx-surface);
+  color: var(--rdx-fg);
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-}
-
-.mini:hover {
-  background: var(--rdx-primary);
-  color: var(--rdx-primary-fg);
-  border-color: var(--rdx-primary);
 }
 </style>
